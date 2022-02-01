@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+    <head></head>
+    <body>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Key</th>
+                    <th>Char</th>
+                </tr>
+            </tbody>
+        </table>
+        <script id="loader">
+            var tbody = document.querySelector("tbody");
+            function genRow(keyCharArray){
+                var row = document.createElement("tr");
+                row.innerHTML += `<td>${keyCharArray[0]}</td><td>${keyCharArray[1]}</td>`;
+                tbody.append(row);
+                row.addEventListener("click",e => navigator.clipboard.writeText(keyCharArray[1]));
+            }
+        </script>
+    </body>
+</html>
