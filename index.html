@@ -11,13 +11,15 @@
             </tbody>
         </table>
         <script id="loader">
-            var tbody = document.querySelector("tbody");
-            function genRow(keyCharArray){
-                var row = document.createElement("tr");
-                row.innerHTML += `<td>${keyCharArray[0]}</td><td>${keyCharArray[1]}</td>`;
-                tbody.append(row);
-                row.addEventListener("click",e => navigator.clipboard.writeText(keyCharArray[1]));
-            }
+            fetch("./Chars.json").then(chars => chars.json()).then(chars => {
+                Object.entries(chars).forEach(char => {
+                    var row = document.createElement("tr");
+                    row.innerHTML += `<td>${char[0]}</td><td>${char[1]}</td>`;
+                    document.querySelector("tbody").append(row);
+                    row.addEventListener("click",e => navigator.clipboard.writeText(char[1]));
+                });
+            });
+            document.getElementById("loader").remove();
         </script>
     </body>
 </html>
